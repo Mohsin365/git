@@ -117,7 +117,7 @@ git log --pretty=format:"%h -- %an"..............shows commits in user defined f
 	press 'i' to write, 'esc key' to stop writing, at bottom press ':wq' to commit and exit vim
 }
 
-git commit--amend...........vim editor opens, where you can merge your changes + message 
+git commit --amend...........vim editor opens, where you can merge your changes + message 
 			to any other previous commit
 
 ########################	UNSTAGING, MODIFYING, RESTORING FILES		##########################
@@ -148,4 +148,6 @@ git checkout -f..................to undo all the changes made in all files....
 git config --global alias.<your alias> <'name of command'> ........now you can use your alias as....
  		git command e.g., git config --global alias.st status.......sets st for status....
 		now, 'git st' works same as 'git status'
+
+
 						
