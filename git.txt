@@ -120,7 +120,7 @@ git log --pretty=format:"%h -- %an"..............shows commits in user defined f
 git commit --amend...........vim editor opens, where you can merge your changes + message 
 			to any other previous commit
 
-########################	UNSTAGING, MODIFYING, RESTORING FILES		##########################
+##########################    	UNSTAGING, MODIFYING, RESTORING FILES		##########################
 
 git restore --staged <file name>...........to unstage a file
 git checkout -- <file name>................to undo changes made in a file and go back to....
@@ -150,4 +150,5 @@ git config --global alias.<your alias> <'name of command'> ........now you can u
 		now, 'git st' works same as 'git status'
 
 
-						
+##########################	CREATING AND SWITCHING BRANCHES		#################################					
+
