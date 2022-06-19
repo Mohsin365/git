@@ -1,0 +1,145 @@
+git is distributed version control system
+three stages -- tracking(initializing)
+
+#######################		BASIC		##########################
+
+git pwd.........present working directory
+git ls............lists contents of directory
+
+git status........check status of git
+git init.......... initialize git in target directory....
+			 i.e., git starts keeping track of the target directory
+git add --a or git add .	..........stage all files in directory....
+			 stage means which files/directories you want to commit
+git add <name of file>........stage this particular file
+git commit.........save/snapshot upto this point of time....
+			you can now return back to this point if anything goes wrong
+(	git commit -m "<write comment here>"....... commit with a message of what 
+	was changed		
+)
+
+rm -rf .git............removes repository
+
+####################	CLONING REPO, IGNORING FILES, COMPARING	######################
+git clone <URL of repository>.............downloads the repository
+
+git .gitignore..........makes a file named ".gitignore" in which you can write....
+				names of files/directories that you want to ignore while commiting....
+					e.g., to ignore file named "abc.log", write it in .gitignore file,....
+
+(	<*.extension>.........ignores all files with this extension
+	/<directory name>/............ignores only outer directory with this name.....
+	any other directory in another folder/directory with the same name will not be affected....
+	you can provide full path of the file you want to ignore also	
+)	
+
+git diff...........compares working directory with staging area
+git diff --stage............compares previous commit with present staging area
+
+
+###################	SKIPPING STAGING AREA	##################
+
+{	
+	tracked files means they are already staged	
+}
+
+git commit -a -m "<comment if you want>".........all tracked files are staged + commited....
+		i.e., skips staging/ if any new file is untracked, that will not be staged and commited
+
+
+
+#######################		MOVING, RENAMING FILES		############################
+
+git rm <name of file>...........deletes the file
+
+{	
+	to rename we use move command 'mv' like linux	
+}
+
+git mv <present name of file> <new name you want>........renames the file
+
+{	
+	after using above 2 commands, git itself stages	
+}
+
+{	
+	if you rename a file say "abc.txt" to "xyz.txt" (not using git), git will treat it as....
+	deleting the file "abc.txt" and adding new file "xyz.txt" taht is untracked ,then you....
+	have to add "xyz.txt" to staging area, and git will now know that it was actually renamed	
+}
+
+git rm --cached <file name>.........untrack the file
+
+{
+	if you are TRACKING A FILE ALREADY say "index.html"; and now you want to ignore this file....
+	while commiting, you write its name in .gitignore file, then add everything to staging area,....
+	and commit also ; now if you change anything in "index.html" and then run 'git status',....
+	this should not affect git, however git will show that "index.html" has been modified....
+	
+	this happens because you were already tracking this file earlier, and we have to explicitly....
+	untrack this file using above command, and for git the file will be deleted
+}
+
+
+##########################	VIEWING AND CHANGING COMMITS	########################
+
+git log ........... shows all the commits
+(	 use rrow keys to move down and see more commits,
+	 press 'q' to exit the commits pager	
+)
+
+
+git log -p............shows all commits + what was added/deleted
+git log -p -2............shows 2 commits + what was changed
+
+git log --stat..........shows in short summary of commits and changes
+git log --pretty=oneline.............shows all commits in one line
+
+(	git log --pretty=short...............shows commits with author and message
+	git log --pretty=full...............shows commits with author, message and committer
+)
+
+git log --since=2.days...........shows commits since last 2 days, 
+git log --since=4.months.......shows commits since last 4 months
+
+(	similarly git log --since=x.weeks,   git log --since=x.years.......x = any +ve integer
+)
+
+git log --pretty=format:"%h -- %an"..............shows commits in user defined format
+
+(	%h means commit hash , %an means author name
+	Similarly, %ae means author email, %ce means committer email....etc
+
+	can check git documentation for more pretty formats
+)
+
+{
+	press 'i' to write, 'esc key' to stop writing, at bottom press ':wq' to commit and exit vim
+}
+
+git commit--amend...........vim editor opens, where you can merge your changes + message 
+			to any other previous commit
+
+########################	UNSTAGING, MODIFYING, RESTORING FILES		##########################
+
+git restore --staged <file name>...........to unstage a file
+git checkout -- <file name>................to undo changes made in a file and go back to....
+					 what it was like in previous commit
+(	doesn't work with .gitignore file
+)
+
+git checkout -f..................to undo all the changes made in all files....
+			and go back to previous commit state
+(	works with .gitignore also
+)
+
+
+######################### 	REMOTE REPOSITORIES	########################
+
+{
+	remote refers to any website that hosts git repositories on internet e.g., github, gitlab etc.
+	pull ----- means get code from remote repo
+	push ----- means to send your code to remote repo
+
+}
+							
