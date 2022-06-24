@@ -1,10 +1,21 @@
+{}.........some extra info related to commands
+().........more use of commands
+
+
+
 git is distributed version control system
-three stages -- tracking(initializing)
+git keeps snapshot of the state of project i.e,
+	it keeps pointer to that state, therefore uses less memory
+three stages -- tracking(initializing), staging, commiting
+
+
 
 #######################		BASIC		##########################
 
 git pwd.........present working directory
 git ls............lists contents of directory
+git cd <path of directory> ........... change directory
+
 
 git status........check status of git
 git init.......... initialize git in target directory....
@@ -20,7 +31,9 @@ git commit.........save/snapshot upto this point of time....
 
 rm -rf .git............removes repository
 
+
 ####################	CLONING REPO, IGNORING FILES, COMPARING	######################
+
 git clone <URL of repository>.............downloads the repository
 
 git .gitignore..........makes a file named ".gitignore" in which you can write....
@@ -37,7 +50,7 @@ git diff...........compares working directory with staging area
 git diff --stage............compares previous commit with present staging area
 
 
-###################	SKIPPING STAGING AREA	##################
+###########################		SKIPPING STAGING AREA		#########################
 
 {	
 	tracked files means they are already staged	
@@ -120,10 +133,11 @@ git log --pretty=format:"%h -- %an"..............shows commits in user defined f
 git commit --amend...........vim editor opens, where you can merge your changes + message 
 			to any other previous commit
 
-##########################    	UNSTAGING, MODIFYING, RESTORING FILES		##########################
+
+##########################	 UNSTAGING, MODIFYING, RESTORING FILES		##########################
 
 git restore --staged <file name>...........to unstage a file
-git checkout -- <file name>................to undo changes made in a file and go back to....
+git checkout -- <file name>................to undo changes made in a file/directory and go back to....
 					 what it was like in previous commit
 (	doesn't work with .gitignore file
 )
@@ -138,17 +152,148 @@ git checkout -f..................to undo all the changes made in all files....
 
 {
 	remote refers to any website that hosts git repositories on internet e.g., github, gitlab etc.
-	pull ----- means get code from remote repo
-	push ----- means to send your code to remote repo
+	pull ----- means get code from remote repository
+	push ----- means to send your code to remote repository
 
 }
 
-#####################################	ALIAS		#######################################
+{
+	after making a repository in remote website, say github, use below commands
+}
+
+git remote add origin <github repository URL> .......... tells git to add a remote named 'origin'....
+					with given URL.... you can use your own name for remote instead....
+					of 'origin' .... however, 'origin' is common
+
+git remote ............. shows all remotes aka website URLs
+
+git remote -v .......... shows 2 URLs, one...to push, second...to fetch/pull
+				 these 2 URLs can be same or different
+
+git push -u origin master ........... push your code to remote, here 'origin'
+
+(	sometimes instead of master, try main
+	git push -u origin main
+) 
+
+{
+	if git shows error: permission denied
+	then, you need to generate SSH key first and add it to github or any other remote
+
+	SSH key is needed so that only the person with that key can push/pull from that repository
+	Otherwise, anyone can push/pull from that repository 
+}
+
+{
+	go to settings in github
+	go to SSH/GPG keys
+	press 'New SSH key' and give it a name
+	Now you need to paste key here
+}
+
+ssh-keygen -t rsa -b 4096 -C <"email used in github"> ........ generates key and saves it in your PC
+
+eval $(ssh-agent -s) .......... to ensure if SSH agent is running....shows Agent pid (ID)
+
+ssh-add ~/.ssh/id_rsa ......... add SSH private key to SSH agent
+
+tail ~/.ssh/id_rsa.pub ........ shows your SSH key....can copy now
+OR
+clip ~/.ssh/id_rsa.pub ........ copies SSH key to clipboard
+
+{
+	Now paste SSH key in github/remote and add it
+	git push -u origin master... will work now
+	
+}
+
+
+
+
+#################################	 ALIAS		#######################################
 
 git config --global alias.<your alias> <'name of command'> ........now you can use your alias as....
+
  		git command e.g., git config --global alias.st status.......sets st for status....
 		now, 'git st' works same as 'git status'
 
 
-##########################	CREATING AND SWITCHING BRANCHES		#################################					
+##########################	CREATING AND SWITCHING BRANCHES		#############################					
+
+git checkout -b <name of new branch>................makes and switches to new branch
+git checkout master....................switches to master branch
+git checkout <name of any branch created before>...........switches to that branch
+
+git branch ................... lists all branch names
+
+
+##############################     	MERGING BRANCHES		####################################
+
+{
+	before switching to another branch, it is good practice to keep your current branch clean....
+	and commit the changes
+	
+	To merge current branch to its main branch,....
+		go to the main branch and type below command
+}
+
+git merge <branch name>.........to merge this branch to its main branch....
+				e.g., to merge 'xyz' barnch to 'master' branch,
+					switch to master branch first
+						git checkout master		
+					then
+						git merge xyz
+
+(	while merging, it may show merging conflict.....that means the git is telling you that the two....
+	branches have different changes for the same thing, both look important, so you choose....
+	what change to accept i.e., ....
+	accept/include either current change (current status) or incoming change (from branch)
+
+)
+
+
+############################		RESOLVING MERGE CONFLICTS	############################
+
+{
+	git shows merging conflicts using "conflict resolution markers" shown below....
+	
+	<<<<<< (current change)
+		-------
+		-------
+			>>>>>> (incoming change)
+	
+	and asks which branch changes to keep
+}
+
+{
+	after you choose which branch changes to keep, you use 'git add' command
+}
+
+git add <file name> .............. to tell git that conflict is resolved for this file....
+				      and, then commit to merge child branch to main branch
+
+
+
+###########################		BRANCH MANAGEMENT		############################
+
+git branch .............. shows all the branches
+
+git branch -v ............ shows branch, last commit & message
+
+git branch --merged .......... shows those branches that are already merged
+
+git branch --no-merged ......... shows those branches that are not merged
+
+git branch -d <branch name> ............ deletes the branch only if it has been already merged....
+					   otherwise, it shows error
+
+git branch -D <branch name> ............ deletes the branch even if it has not been merged
+
+
+
+
+
+
+
+
 
