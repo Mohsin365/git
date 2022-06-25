@@ -10,7 +10,9 @@ three stages -- tracking(initializing), staging, commiting
 
 
 
-#######################		BASIC		##########################
+
+############################		BASIC		##############################
+
 
 git pwd.........present working directory
 git ls............lists contents of directory
@@ -33,7 +35,11 @@ git commit.........save/snapshot upto this point of time....
 rm -rf .git............removes repository
 
 
-####################	CLONING REPO, IGNORING FILES, COMPARING	######################
+
+
+
+#######################		CLONING REPO, IGNORING FILES, COMPARING		######################
+
 
 git clone <URL of repository>.............downloads the repository
 
@@ -51,7 +57,12 @@ git diff...........compares working directory with staging area
 git diff --stage............compares previous commit with present staging area
 
 
+
+
+
+
 ###########################		SKIPPING STAGING AREA		#########################
+
 
 {	
 	tracked files means they are already staged	
@@ -62,7 +73,11 @@ git commit -a -m "<comment if you want>".........all tracked files are staged + 
 
 
 
+
+
+
 #######################		MOVING, RENAMING FILES		############################
+
 
 git rm <name of file>...........deletes the file
 
@@ -95,7 +110,12 @@ git rm --cached <file name>.........untrack the file
 }
 
 
+
+
+
+
 ##########################	VIEWING AND CHANGING COMMITS	########################
+
 
 git log ........... shows all the commits
 (	 use arrow keys to move down and see more commits,
@@ -135,7 +155,11 @@ git commit --amend...........vim editor opens, where you can merge your changes 
 			to any other previous commit
 
 
+
+
+
 ##########################	 UNSTAGING, MODIFYING, RESTORING FILES		##########################
+
 
 git restore --staged <file name>...........to unstage a file
 git checkout -- <file name>................to undo changes made in a file/directory and go back to....
@@ -149,7 +173,12 @@ git checkout -f..................to undo all the changes made in all files....
 )
 
 
+
+
+
+
 ######################### 	REMOTE REPOSITORIES	########################
+
 
 {
 	remote refers to any website that hosts git repositories on internet e.g., github, gitlab etc.
@@ -211,7 +240,9 @@ clip ~/.ssh/id_rsa.pub ........ copies SSH key to clipboard
 
 
 
+
 #################################	 ALIAS		#######################################
+
 
 git config --global alias.<your alias> <'name of command'> ........now you can use your alias as....
 
@@ -219,7 +250,12 @@ git config --global alias.<your alias> <'name of command'> ........now you can u
 		now, 'git st' works same as 'git status'
 
 
+
+
+
+
 ##########################	CREATING AND SWITCHING BRANCHES		#############################					
+
 
 git checkout -b <name of new branch>................makes and switches to new branch
 git checkout master....................switches to master branch
@@ -228,7 +264,12 @@ git checkout <name of any branch created before>...........switches to that bran
 git branch ................... lists all branch names
 
 
+
+
+
+
 ##############################     	MERGING BRANCHES		####################################
+
 
 {
 	before switching to another branch, it is good practice to keep your current branch clean....
@@ -253,7 +294,12 @@ git merge <branch name>.........to merge this branch to its main branch....
 )
 
 
+
+
+
+
 ############################		RESOLVING MERGE CONFLICTS	############################
+
 
 {
 	git shows merging conflicts using "conflict resolution markers" shown below....
@@ -275,7 +321,11 @@ git add <file name> .............. to tell git that conflict is resolved for thi
 
 
 
+
+
+
 ###########################		BRANCH MANAGEMENT		############################
+
 
 git branch .............. shows all the branches
 
@@ -291,7 +341,12 @@ git branch -d <branch name> ............ deletes the branch only if it has been 
 git branch -D <branch name> ............ deletes the branch even if it has not been merged
 
 
+
+
+
+
 #############################		BRANCHING WORKFLOW	###############################
+
 
 {
 	2 types of branches --- Long running branch and topic branch
