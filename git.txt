@@ -15,6 +15,7 @@ three stages -- tracking(initializing), staging, commiting
 git pwd.........present working directory
 git ls............lists contents of directory
 git cd <path of directory> ........... change directory
+touch <file name> .......... makes a file
 
 
 git status........check status of git
@@ -36,7 +37,7 @@ rm -rf .git............removes repository
 
 git clone <URL of repository>.............downloads the repository
 
-git .gitignore..........makes a file named ".gitignore" in which you can write....
+touch .gitignore..........makes a file named ".gitignore" in which you can write....
 				names of files/directories that you want to ignore while commiting....
 					e.g., to ignore file named "abc.log", write it in .gitignore file,....
 
@@ -97,7 +98,7 @@ git rm --cached <file name>.........untrack the file
 ##########################	VIEWING AND CHANGING COMMITS	########################
 
 git log ........... shows all the commits
-(	 use rrow keys to move down and see more commits,
+(	 use arrow keys to move down and see more commits,
 	 press 'q' to exit the commits pager	
 )
 
@@ -170,7 +171,7 @@ git remote ............. shows all remotes aka website URLs
 git remote -v .......... shows 2 URLs, one...to push, second...to fetch/pull
 				 these 2 URLs can be same or different
 
-git push -u origin master ........... push your code to remote, here 'origin'
+git push -u origin master ........... push your code/files to remote, here 'origin'
 
 (	sometimes instead of master, try main
 	git push -u origin main
@@ -290,10 +291,33 @@ git branch -d <branch name> ............ deletes the branch only if it has been 
 git branch -D <branch name> ............ deletes the branch even if it has not been merged
 
 
+#############################		BRANCHING WORKFLOW	###############################
 
+{
+	2 types of branches --- Long running branch and topic branch
 
+	long running branches may include master and some other important branches
 
+	topic branches are temporary to try out some new ideas and they might or might not....
+	get merged to main branch
+}
 
+{
+	branches need to be published explicitly
+	switch to that branch in which you want to push your new branch say....
+	you switch to master branch first using....git checkout master....
+	then use below command
+}
+
+git push origin <branch name>............ push 'branch name' to remote named 'origin'
+
+(	git push origin <existing branch name>:<new name for branch> ...... tells git that...
+				the branch 'existing branch name' that is here in my PC, make it....
+				'new name for branch' in the remote repository ....
+				creates new branch at remote with this new name
+)
+
+git push -d origin <branch name> ........... deletes the branch on remote repository
 
 
 
