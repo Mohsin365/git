@@ -238,7 +238,15 @@ clip ~/.ssh/id_rsa.pub ........ copies SSH key to clipboard
 }
 
 
+(  if this error occurs...... ! [rejected] master -> master (fetch first)
+	then do
 
+	git pull --rebase origin master
+	git push -u origin master
+
+	This happens when your teammate have already committed,....
+	so his commit is on top. To avoid you do rebase (merge , fetch).
+)
 
 
 #################################	 ALIAS		#######################################
